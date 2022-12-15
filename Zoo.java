@@ -11,14 +11,14 @@ public class Zoo {
 
         do{
             System.out.println("-----------------------");
-            System.out.println("1 - Cadastrar Jaula ");
-            System.out.println("2 - Listar Jaula ");
-            System.out.println("3 - Atualizar Jaula ");
-            System.out.println("4 - Excluir Jaula ");
-            System.out.println("5 - Cadastrar Animal ");
-            System.out.println("6 - Listar Animal ");
-            System.out.println("7 - Atualizar Animal ");
-            System.out.println("8 - Excluir Animal ");
+            System.out.println("1 - Cadastrar Animal ");
+            System.out.println("2 - Listar Animal ");
+            System.out.println("3 - Atualizar Animal ");
+            System.out.println("4 - Excluir Animal ");
+            System.out.println("5 - Cadastrar Jaula ");
+            System.out.println("6 - Listar Jaula ");
+            System.out.println("7 - Atualizar Jaula ");
+            System.out.println("8 - Excluir Jaula ");
             System.out.println("-----------------------");
 
             try{
@@ -29,31 +29,32 @@ public class Zoo {
 
             switch (op) {
                 case 1:
-                    cadastrarJaula(scanner);
-                    break;
-                case 2:
-                    Jaula.listarJaula();
-                    break;
-                case 3:
-                    System.out.println("Informe o Id do jaula que você gostaria de alterar: ");
-                    int idJaula = scanner.nextInt();
-                    Jaula.updateJaula(idJaula);
-                    break;
-                case 4:
-                    deleteJaula(scanner);
-                    break;
-                case 5:
                     cadastrarAnimal(scanner);
                     break;
-                case 6:
+                case 2:
+                
                     Animal.listarAnimal();
-                case 7:
-                    System.out.println("Informe o Id do animal que você gostaria de alterar: ");
+                    break;
+                case 3:
+                    System.out.println("Informe o Id do Animal que você gostaria de alterar: ");
                     int idAnimal = scanner.nextInt();
                     Animal.updateAnimal(idAnimal);
                     break;
-                case 8:
+                case 4:
                     deleteAnimal(scanner);
+                    break;
+                case 5:
+                    cadastrarJaula(scanner);
+                    break;
+                case 6:
+                    Jaula.listarJaula();
+                case 7:
+                    System.out.println("Informe o Id do Jaula que você gostaria de alterar: ");
+                    int idJaula = scanner.nextInt();
+                    Jaula.updateJaula(idJaula);
+                    break;
+                case 8:
+                    deleteJaula(scanner);
                     break;
             }
         }while(op!= 0);

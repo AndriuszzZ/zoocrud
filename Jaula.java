@@ -77,7 +77,7 @@ public class Jaula {
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "DELETE FROM Jaula WHERE id = ?;"
             );
-            stmt.setInt(1, idJaula);
+            stmt.setInt(1, idFabricante);
             stmt.execute();
             stmt.close();
     }
