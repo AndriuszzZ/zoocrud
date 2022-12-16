@@ -13,13 +13,14 @@ public class Animal {
         int idAnimal,
         String nome,
         String especie
+
     )throws SQLException{
         this.idAnimal = idAnimal;
         this.nome = nome;
         this.especie = especie;
 
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
-            "INSERT INTO Produto (idAnimal, nome, especie) VALUES (?, ?, ?, ?)"
+            "INSERT INTO animal (idAnimal, nome, especie) VALUES (?, ?, ?)"
         );
         stmt.setInt(1, idAnimal);
         stmt.setString(2, nome);
@@ -28,6 +29,40 @@ public class Animal {
         stmt.close();
     }
 
+    public static void listarAnimal() throws SQLException{
+        Connection connec = DAO.createConnection();
+        ResultSet rs = connec.createStatement().executeQuery(
+            "SELECT * FROM Animal;"
+        );
+        while(rs.next()){
+            System.out.println(
+                "ID: " + rs.getInt("idAnimal") + "-"+
+                "nome: " + rs.getString("nome") + "-"+
+                "especie: " + rs.getString("especie")
+            );
+        }
+    }
+
+    public static void updateAnimal(String nome, String especie, int idAnimal) throws SQLException{
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "UPDATE animal SET nome = ?, especie = ? WHERE idAnimal = ?;"
+        );
+        stmt.setString(1, nome);
+        stmt.setString(2, especie);
+        stmt.setInt(3, idAnimal);
+        stmt.execute();
+        stmt.close();
+    }
+
+    public static void deleteAnimal(int idAnimal) throws SQLException{
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+                "DELETE FROM animal WHERE idAnimal = ?;"
+        );
+        stmt.setInt(1, idAnimal);
+        stmt.execute();
+        stmt.close();
+    }
+    
     public int getIdAnimal(){
         return idAnimal;
     }
@@ -47,40 +82,6 @@ public class Animal {
         this.especie = especie;
     }
 
-    public static void listarAnimal() throws SQLException{
-        Connection connec = DAO.createConnection();
-        ResultSet rs = connec.createStatement().executeQuery(
-            "SELECT * FROM Animal;"
-        );
-        while(rs.next()){
-            System.out.println(
-                "ID: " + rs.getInt("idAnimal") + 
-                "nome: " + rs.getString("nome") + 
-                "especie: " + rs.getString("especie")
-            );
-        }
-    }
-
-    public static void updateAnimal(int idAnimal) throws SQLException{
-        PreparedStatement stmt = DAO.createConnection().prepareStatement(
-            "UPDATE Animal SET idAnimal = ?, nome = ?, especie = ?, WHERE idAnimal = ?;"
-        );
-        stmt.setString(1, "Urso");
-        stmt.setString(2, "Rex");
-        stmt.setString(3, "Pardo");
-        stmt.execute();
-        stmt.close();
-    }
-
-    public static void deleteAnimal(int idAnimal) throws SQLException{
-        PreparedStatement stmt = DAO.createConnection().prepareStatement(
-                "DELETE FROM Animal WHERE idAnimal = ?;"
-        );
-        stmt.setInt(1, idAnimal);
-        stmt.execute();
-        stmt.close();
-    }
-    
     @Override
     public String toString(){
         return "Id: " + idAnimal + "\n"

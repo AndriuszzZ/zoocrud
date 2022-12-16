@@ -21,7 +21,7 @@ USE `zoocrud` ;
 -- Table `zoocrud`.`Animal`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zoocrud`.`Animal` (
-  `idAnimal` INT NOT NULL AUTO_INCREMENT,
+  `idAnimal` INT NOT NULL ,
   `nome` VARCHAR(255) NOT NULL,
   `especie` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idAnimal`))
@@ -32,7 +32,7 @@ ENGINE = InnoDB;
 -- Table `zoocrud`.`Jaula`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zoocrud`.`Jaula` (
-  `idJaula` INT NOT NULL AUTO_INCREMENT,
+  `idJaula` INT NOT NULL ,
   `nome` VARCHAR(255) NOT NULL,
   `tipo` VARCHAR(255) NOT NULL,
   `idAnimal` INT NOT NULL,
